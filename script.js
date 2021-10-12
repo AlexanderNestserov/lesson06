@@ -1,37 +1,35 @@
 'use strict';
-let freeNumber;
 
-freeNumber = prompt('Can you gass my favorite number from 1 to 100?');
-
-const lessNumber = function (a) {
-   let number = 56;
-   
-   if (a > number) {
-      alert('The number is more');
-      a = prompt('Can you gass my favorite number less?');
-      return a;
-   } 
-   else if (a < number && a !== null && a !== '') {
-      alert('The number is less');
-      a = prompt('Can you gass my favorite number more?');
-      return a;
-   } 
-   else if (a == number) {
-      alert('You are win!!!');
-      return a;
-   }
-   else if (a == null || a == '') {
-      alert('The game is over');
-      return a;
-   }
-
-   const theEnd = function (a) {
-      if (isNaN(+a)) {
-         alert('Enter a number');
-         a = prompt('Can you gass my favorite number from 1 to 100?');
-         return a;
+const isNum = function (num) {
+   return !isNaN(parseFloat(num)) && isFinite(num);
+};
+const game = function () {
+   const randomNumber = Math.floor(Math.random() * 100);
+   console.log(randomNumber);
+   return function repeat() {
+      let userNumber = prompt('Your Number?');
+      if (isNum(userNumber)) {
+         if (userNumber > randomNumber) {
+            alert('The number is more');
+            repeat();
+         } else if (userNumber < randomNumber) {
+            alert('The number is less');
+            repeat();
+         }
+         else {
+            alert('You are win!!!');
+         }
+      }
+      else if
+         (userNumber === null) {
+         alert('The game is over');
+      } else {
+         repeat();
       }
    };
-   theEnd(freeNumber);
+
 };
-lessNumber(freeNumber);
+
+let a = game();
+a();
+
